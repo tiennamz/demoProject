@@ -89,4 +89,5 @@ const loginAccount=()=>{
 btnLogin.addEventListener("click",(e)=>{
     e.preventDefault()
     loginAccount()
+    emailInput.value=""
 })

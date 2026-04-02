@@ -24,7 +24,7 @@ let confirmUpdateSchedule=document.getElementById("confirm-edit")
 let modalDelete=document.getElementById("modal-box")
 let btnCancelDeleteModal=document.getElementById("closeDeleteModal")
 let confirmDelete=document.getElementById("yesDelate")
-
+let paginationElement=document.getElementById("pagination")
 
 // hàm tạo ngày
 const createDate=()=>{
@@ -101,8 +101,9 @@ const saveSchedule=()=>{
     localStorage.setItem("Schedules", JSON.stringify(listSchedules))
 }
 
-
 let ownSchedule
+
+console.log(currentUser);
 
 const render=()=>{
     getDataSchedule()
@@ -114,32 +115,32 @@ const render=()=>{
         });
         return
     }
-
+    
     ownSchedule=listSchedules.filter((schedule)=>{
         return currentUser.id===schedule.userId && schedule.status!=="cancel"
     })
-
     if(ownSchedule.length==0){
+        scheduleElement.innerHTML=`<tr><td colspan="6" style="text-align:center">Danh sách lịch tập trống</td></tr>`
         Swal.fire({
     icon: "error",
     title: "Oops...",
     text: "Danh sách lịch tập trống",
-        });
-        return
+});
+return
+}
+
+scheduleElement.innerHTML=""
+ownSchedule.forEach((schedule)=>{
+    let nameClass
+    if(schedule.classId==1){
+        nameClass="Gym"
+    }else if(schedule.classId==2){
+        nameClass="Yoga"
+    }else if(schedule.classId==3){
+        nameClass="Zumba"
     }
-
-    scheduleElement.innerHTML=""
-    ownSchedule.forEach((schedule)=>{
-        let nameClass
-        if(schedule.classId==1){
-            nameClass="Gym"
-        }else if(schedule.classId==2){
-            nameClass="Yoga"
-        }else if(schedule.classId==3){
-            nameClass="Zumba"
-        }
-
-        scheduleElement.innerHTML+=
+    
+    scheduleElement.innerHTML+=
         `
             <tr>
                 <td>${nameClass}</td>
@@ -156,6 +157,7 @@ const render=()=>{
     })
 }
 render()
+
 
 if(currentUser==null){
     btnAddSchedule.style.display="none"
@@ -192,7 +194,7 @@ const checkValidateForm=()=>{
     if(rawDate==""){
         validateDate.innerText="Ngày tập trống"
         isValid=false
-    }else if(isDatePast){
+    }else if(isDatePast()){
         validateDate.innerText="Ngày tập đã qua"
         isValid=false
     }
@@ -235,6 +237,13 @@ confirmAddSchedule.addEventListener("click",(e)=>{
         resetForm()
         closeForm()
         render()
+
+        Swal.fire({
+      title: "Oke rồi he!",
+      icon: "success",
+      timer: 3000,
+      text: "Đặt lịch mới thành công",
+    });
     }
 })
 
@@ -264,6 +273,7 @@ confirmUpdateSchedule.addEventListener("click",(e)=>{
         listSchedules[indexEdit].classId=classInput.value
         listSchedules[indexEdit].time=timeInput.value
         listSchedules[indexEdit].date=dateInput.value
+        listSchedules[indexEdit].createdAt=`${createDate()}`
         tittleForm.innerText="Thêm lịch mới"
         confirmAddSchedule.style.display="inline-block"
         confirmUpdateSchedule.style.display="none"
@@ -271,6 +281,12 @@ confirmUpdateSchedule.addEventListener("click",(e)=>{
         closeForm()
         resetForm()
         render()
+        Swal.fire({
+      title: "Oke rồi he!",
+      icon: "success",
+      timer: 3000,
+      text: "Đổi lịch mới thành công",
+    });
     }
 })
 
@@ -282,8 +298,16 @@ const deleteSchudule=(id)=>{
 }
 
 confirmDelete.addEventListener("click",()=>{
-    listSchedules.splice(indexDelete,1)
+    listSchedules[indexDelete].status="cancel"
+    listSchedules[indexDelete].createdAt=`${createDate()}`
     saveSchedule()
     render()
     closeModalDelete()
+    Swal.fire({
+        title: "Hủy lịch thành công!",
+        icon: "success",
+        timer:3000
+    });
 })
+
+
