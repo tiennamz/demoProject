@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/book.css">
+    <title>Manager schedule</title>
+</head>
+<body>
+    <header>
+        <div class="logo">GYM MANAGEMENT</div>
+        <div class="menu">
+            <span><a href="./home.html">Trang chủ</a></span>
+            <span><a href="./book.html">Lịch tập</a></span>
+            <span id="span-manager-admin" hidden><a href="">Quản lý</a></span>
+            <span id="span-hello" hidden>Xin chào, <span id="name"></span></span>
+            <span id="span-login" hidden><a href="./login.html">Đăng nhập</a></span>
+            <span id="span-logout" hidden><a href="./login.html">Đăng xuất</a></span>
+        </div>
+    </header>
+    <main>
+        <div class="tittle">
+            <h2>Quản lý lịch tập</h2>
+            <button id="add-schedule" class="add-schedule" type="submit">Đặt lịch mới</button>
+        </div>
+        <table border="0" cellspacing="0" >
+            <thead>
+                <tr>
+                    <th>Lớp học</th>
+                    <th>Ngày tập</th>
+                    <th>Khung giờ</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody class="list-schedule" id="list-schedule">
+                
+            </tbody>
+        </table>
+       
+    </main>
+        <form class="hidden form-add-schedule">
+            <h4 id="title-form" class="title-form">Đặt lịch mới</h4>
+            <div class="input-schedule">
+                <label for="class-schedule">Lớp học</label>
+                <select name="class-schedule" id="class-schedule">
+                    <option value="">Chọn lớp học</option>
+                    <option value="1">Gym</option>
+                    <option value="2">Yoga</option>
+                    <option value="3">Zumba</option>
+                </select>
+                <small class="valid" id="valid-class"></small>
+
+            </div>
+            <div class="input-schedule">
+                <label for="date-schedule">Ngày tập</label>
+                <input type="date" id="date-schedule">
+                <small class="valid" id="valid-date"></small>
+
+            </div>
+            <div class="input-schedule">
+                <label for="time-schedule">Khung giờ</label>
+                <select name="time-schedule" id="time-schedule">
+                    <option value="">Chọn khung giờ</option>
+                    <option value="7:00-9:00">7:00-9:00</option>
+                    <option value="9:00-11:00">9:00-11:00</option>
+                    <option value="13:00-15:00">13:00-15:00</option>
+                    <option value="15:00-17:00">15:00-17:00</option>
+                    <option value="17:00-19:00">17:00-19:00</option>
+                </select>
+                <small class="valid" id="valid-time"></small>
+            </div>
+            <div class="action">
+                <button type="reset" class="cancel">Hủy</button>
+                <button type="submit" id="confirm-add" class="confirm-add">Lưu</button>
+                <button hidden type="submit" id="confirm-edit" class="confirm-edit">Sửa</button>
+            </div>
+        </form>
+            <div class=" modal modal-delete" id="modalDelete">
+                <div class="hidden modal-box" id="modal-box">
+                    <h2 class="modal-title">Xác nhận xóa</h2>
+                    <p class="confirm-message">Bạn có chắc chắn muốn xóa lịch tập này không?</p>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-gray" id="closeDeleteModal">Hủy bỏ</button>
+                        <button class="btn btn-red" id="yesDelate">Đồng ý xóa</button>
+                    </div>
+                </div>
+            </div>
+    <footer>
+        <div class="footer-top">
+            <div class="about">
+                <h3>Về chúng tôi</h3>
+                <p>Gym Management - Nơi bạn bắt đầu hành </p>
+                <p>trình fitness của mình với các trang </p>
+                <p>thiết bị hiện đại và đội ngũ huấn luyện </p>
+                <p>viên chuyên nghiệp.</p>
+            </div>
+            <div class="about">
+                <h3>Liên hệ</h3>
+                <p>Email: contact@gym.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Địa chỉ: 123 Đường ABC, Quận XYZ</p>
+            </div>
+            <div class="about">
+                <h3>Theo dõi chúng tôi</h3>
+                <div class="footer-link">
+                    <span>Facebook</span>
+                    <span>Instagram</span>
+                    <span>Twitter</span>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2024 Gym Management. All rights reserved.
+        </div>
+    </footer>
+    <div class="overlay hidden"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../javaScript/book.js"></script>
+</body>
+</html>
