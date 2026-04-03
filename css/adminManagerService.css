@@ -135,3 +135,114 @@ thead td{
 .btn-delete-service {
     color: #CA564A;
 }
+.popup-add-service{
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    z-index: 100;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+}
+.title-form {
+    color: #000;
+}
+label{
+    font-weight: bold;
+    color: #6C717C;
+}
+input, textarea{
+    border: 1px solid #DDDFE3;
+    border-radius: 4px;
+}
+input{
+    height: 36px;
+}
+.input-add {
+    display: flex;
+    flex-direction: column;
+    margin: 24px;
+}
+.btn-action-service {
+    text-align: right;
+    margin-right: 24px;
+}
+.btn-cancel {
+    height: 32px;
+    width: 48px;
+    border: none;
+    color: #fff;
+    background-color: #6D727F;
+    border-radius: 4px;
+
+}
+.btn-add-service {
+    height: 32px;
+    width: 48px;
+    border: none;
+    color: #fff;
+    background-color: #5B84EE;
+    border-radius: 4px;
+
+}
+.btn-confirm-edit-service {
+    height: 32px;
+    width: 48px;
+    border: none;
+    color: #fff;
+    background: #fa5252;
+    border-radius: 4px;
+
+
+}
+.popup-delete-service {
+    width: 400px;
+    height: 160px;
+    position: fixed;
+    z-index: 100;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+}
+.popup-delete-service h3{
+    color: #000;
+}
+.popup-delete-service p{
+    color: #747474;
+    margin-left: 24px;
+    margin-bottom: 16px;
+}
+.btn-action-delete-service {
+    text-align: right;
+    margin-right: 24px;
+}
+.btn-cancel-delete-service {
+    height: 32px;
+    width: 48px;
+    border: none;
+    color: #fff;
+    background-color: #6D727F;
+    border-radius: 4px;
+}
+.btn-confirm-delete-service {
+    height: 32px;
+    width: 48px;
+    border: none;
+    color: #fff;
+    background: #C23C31;
+    border-radius: 4px;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 99;
+}
+.hidden{
+    display: none;
+}

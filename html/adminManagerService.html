@@ -19,7 +19,7 @@
     <main>
         <div class="title">
             <h2>Quản lý Dịch vụ</h2>
-            <button class="btn-add-new-service">Thêm dịch vụ mới</button>
+            <button id="btn-add-new-service" class="btn-add-new-service">Thêm dịch vụ mới</button>
         </div>
         <table cellspacing="0">
             <thead>
@@ -47,13 +47,40 @@
                     <td>Zumba</td>
                     <td class="describe">Đốt cháy calories với những điệu nhảy sôi động</td>
                     <td><img class="img-service" src="../img/zumba.png" alt=""></td>
-                    <td><button class="btn  btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
+                    <td><button class="btn btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
                 </tr>
             </tbody>
         </table>
     </main>
-
-
+    <form id="popup-add-service" class="hidden popup-add-service">
+        <h3 class="title-form">Thêm dịch vụ mới</h3>
+        <div class="input-add">
+            <label for="input-name-of-service">Tên dịch vụ</label>
+            <input type="text" name="input-name-of-service" id="input-name-of-service">
+        </div>
+        <div class="input-add">
+            <label for="describe-service">Mô tả</label>
+            <textarea rows="4" name="describe-service" id="describe-service"></textarea>
+        </div>
+        <div class="input-add">
+            <label for="img-service">URL Hình ảnh</label>
+            <input type="text" name="img-service" id="img-service">
+        </div>
+        <div class="btn-action-service">
+            <button id="btn-cancel" class="btn-cancel">Hủy</button>
+            <button id="btn-add-service" class="btn-add-service">Lưu</button>
+            <button hidden id="btn-confirm-edit-service" class="btn-confirm-edit-service">Sửa</button>
+        </div>
+    </form>
+    <div id="popup-delete-service" class="hidden popup-delete-service">
+        <h3>Xác nhận xóa</h3>
+        <p>Bạn có chắc muốn xóa dịch vụ này</p>
+        <div class="btn-action-delete-service">
+            <button id="btn-cancel-delete-service" class="btn-cancel-delete-service">Hủy</button>
+            <button id="btn-confirm-delete-service" class="btn-confirm-delete-service">Xóa</button>
+        </div>
+    </div>
+    <div id="overlay" class="hidden overlay"></div>
     <script src="../javaScript/adminManagerService.js"></script>
 </body>
 </html>
