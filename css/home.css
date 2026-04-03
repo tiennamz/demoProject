@@ -40,6 +40,15 @@ header{
     color: #FFFFFF;
     text-decoration: none;
 }
+header nav{
+    transition: all 0.25s ease-in-out;
+}
+header nav:hover{
+    background-color: #ffcc33;
+    padding: 0 10px;
+    border: none;
+    border-radius: 4px;
+}
 .banner {
     background-image:url(../img/20260331-152738.png) ;
     height: 745.9000244140625px;
@@ -108,6 +117,15 @@ img{
     box-shadow: 0px 4px 10px -4px #0000000D;
     background-color: #fff;
     padding-left: 24px;
+    transition: all 0.25s ease-in-out;
+}
+.item:hover{
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 30px -8px #0000000D;
+
+}
+.item button{
+    cursor: pointer;
 }
 .content {
     height: 90px;

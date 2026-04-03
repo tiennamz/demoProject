@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/adminManagerSchedule.css">
+    <title>Document</title>
+</head>
+<body>
+    <section class="menu">
+        <h3>Admin Dashboard</h3>
+        <div class="link">
+            <span class="choice-admin"><a href="">Quản lý lịch</a></span>
+            <span class="choice-admin"><a href="">Quản lý dịch vụ</a></span>
+            <span class="choice-admin"><a href="./home.html">Trang chủ</a></span>
+            <span class="choice-admin"><a href="./login.html">Đăng xuất</a></span>
+        </div>
+    </section>
+    <main>
+        <h2>Thống kê lịch tập</h2>
+        <div class="num-of-schedule">
+             <div class="schedule">
+                <p class="name-of-schedule">Tổng số lịch Gym</p>
+                <p class="count-schedule">0</p>
+             </div>
+             <div class="schedule">
+                <p class="name-of-schedule">Tổng số lịch Yoga</p>
+                <p class="count-schedule">0</p>
+             </div>
+             <div class="schedule">
+                <p class="name-of-schedule">Tổng số lịch Zumba</p>
+                <p class="count-schedule">0</p>
+             </div>
+        </div>
+        <div class="chart">
+
+        </div>
+        <div class="filter">
+            <h3>Bộ lọc</h3>
+            <form>
+                <div class="filter-input">
+                    <label for="filter-class">Lớp học</label>
+                    <select name="filter-class" id="filter-class">
+                        <option value="all">Tất cả</option>
+                        <option value="Gym">Gym</option>
+                        <option value="Yoga">Yoga</option>
+                        <option value="Zumba">Zumba</option>
+                    </select>
+                </div>
+                <div class="filter-input">
+                    <label for="filter-email">Email</label>
+                    <input type="email" name="filter-email" id="filter-email" placeholder="Tìm theo email">
+                </div>
+                <div class="filter-input">
+                    <label for="filter-date">Ngày</label>
+                    <input type="date" name="filter-date" id="filter-date">
+                </div>
+            </form>
+
+            <table border="0" cellspacing="0" >
+            <thead>
+                <tr>
+                    <th>Lớp học</th>
+                    <th>Ngày tập</th>
+                    <th>Khung giờ</th>
+                    <th>Họ tên</th>
+                    <th>Email</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody class="list-schedule" id="list-schedule">
+                <tr>
+                    <td>Yoga</td>
+                    <td>2025-05-02</td>
+                    <td>14:00-16:00</td>
+                    <td>NGUYEN THANH BINH PHUOC</td>
+                    <td>tieucamieu@gmail.com</td>
+                    <td>
+                        <button class="edit-schedule" >Sửa</button>
+                        <button class="delete-schedule" >Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Zumba</td>
+                    <td>2025-04-24</td>
+                    <td>14:00-16:00</td>
+                    <td>NGUYEN THANH BINH PHUOC</td>
+                    <td>tieucamieu@gmail.com</td>
+                    <td>
+                        <button class="edit-schedule" >Sửa</button>
+                        <button class="delete-schedule" >Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Gym</td>
+                    <td>2025-04-12</td>
+                    <td>7:00-9:00</td>
+                    <td>NGUYEN THANH BINH PHUOC</td>
+                    <td>tieucamieu@gmail.com</td>
+                    <td>
+                        <button class="edit-schedule" >Sửa</button>
+                        <button class="delete-schedule" >Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Yoga</td>
+                    <td>2025-05-02</td>
+                    <td>14:00-16:00</td>
+                    <td>Admin</td>
+                    <td>admin@gmail.com</td>
+                    <td>
+                        <button class="edit-schedule" >Sửa</button>
+                        <button class="delete-schedule" >Xóa</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Yoga</td>
+                    <td>2025-05-02</td>
+                    <td>14:00-16:00</td>
+                    <td>admin</td>
+                    <td>admin@gmail.com</td>
+                    <td>
+                        <button class="edit-schedule" >Sửa</button>
+                        <button class="delete-schedule" >Xóa</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </div>
+    </main>
+</body>
+</html>

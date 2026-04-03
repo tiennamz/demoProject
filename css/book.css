@@ -40,6 +40,15 @@ header{
     color: #FFFFFF;
     text-decoration: none;
 }
+header nav{
+    transition: all 0.25s ease-in-out;
+}
+header nav:hover{
+    background-color: #ffcc33;
+    padding: 0 10px;
+    border: none;
+    border-radius: 4px;
+}
 footer{
     background-color: #1F2937;
     display: flex;
@@ -143,8 +152,17 @@ th{
     color: #fff;
     border: none;
 }
+tr{
+    margin-bottom: 10px;
+    transition: all 0.25s ease-in-out;
+}
+tr:hover{
+    background-color: #adaeb1;
+}
 td{
     font-weight: 540;
+    border-bottom:1px solid gray ;
+    
 }
 
 .edit-schedule {
