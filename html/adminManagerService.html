@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/adminManagerService.css">
+    <title>Admin Manager Service</title>
+</head>
+<body>
+    <section class="menu">
+        <h3>Admin Dashboard</h3>
+        <div class="list-link">
+            <nav class="choice-admin"><a href="./adminManagerSchedule.html">Quản lý lịch</a></nav>
+            <nav class="choice-admin"><a href="./adminManagerService.html">Quản lý dịch vụ</a></nav>
+            <nav class="choice-admin"><a href="./home.html">Trang chủ</a></nav>
+            <nav id="log-out" class="logout choice-admin"><a href="./login.html">Đăng xuất</a></nav>
+        </div>
+    </section>
+    <main>
+        <div class="title">
+            <h2>Quản lý Dịch vụ</h2>
+            <button class="btn-add-new-service">Thêm dịch vụ mới</button>
+        </div>
+        <table cellspacing="0">
+            <thead>
+                <tr>
+                    <td>Tên dịch vụ</td>
+                    <td class="describe">Mô tả</td>
+                    <td>Hình ảnh</td>
+                    <td>Thao tác</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gym</td>
+                    <td class="describe">Tập luyện với các thiết bị hiện đại</td>
+                    <td><img class="img-service" src="../img/Image [w-full].png" alt=""></td>
+                    <td> <button class="btn btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
+                </tr>
+                <tr>
+                    <td>Yoga</td>
+                    <td class="describe">Thư giãn và cân bằng tâm trí</td>
+                    <td><img class="img-service" src="../img/yoga.png" alt=""></td>
+                    <td> <button class="btn  btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
+                </tr>
+                <tr>
+                    <td>Zumba</td>
+                    <td class="describe">Đốt cháy calories với những điệu nhảy sôi động</td>
+                    <td><img class="img-service" src="../img/zumba.png" alt=""></td>
+                    <td><button class="btn  btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </main>
+
+
+    <script src="../javaScript/adminManagerService.js"></script>
+</body>
+</html>

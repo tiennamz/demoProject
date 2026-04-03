@@ -105,8 +105,7 @@ h2{
 .count-zumba{
     color: #7C3AED;
 }
-.chart {
-}
+
 form {
     background-color: #fff;
     margin-bottom: 32px;
@@ -186,7 +185,7 @@ tr:hover{
 }
 td{
     font-weight: 540;
-    border-bottom:1px solid gray ;
+    border-bottom:2px solid #E5E7EB ;
     
 }
 
