@@ -5,6 +5,12 @@
     font-family: sans-serif;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
+}
 
 header{
     position: sticky;
@@ -60,6 +66,7 @@ header nav:hover{
     align-items: center;
     justify-content: center;
     color: #fff;
+    width: 100%;
 }
 
 h1{
@@ -91,6 +98,7 @@ main{
     flex-direction: column;
     align-items: center;
     background-color: #F9FAFB;
+    flex: 1;
 }
 
 h2{
@@ -108,7 +116,9 @@ img{
 .container{
     display: flex;
     gap: 32px;
+    flex-wrap: wrap;
     margin-bottom: 64px;
+    justify-content: center ;
 }
 .item {
     width: 394.6px;
@@ -167,12 +177,15 @@ footer{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 325px;
-
+    min-height: 325px;
 }
+
 .footer-top {
     display: flex;
+    margin-top: 50px;
     gap:40px; 
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 h3{
@@ -182,7 +195,7 @@ h3{
     line-height: 28px;
     vertical-align: middle;
     color: #fff;
-    margin: -48px 0 26px;
+    margin: 0 0 26px;
 
 }
 .about p, .about span{
@@ -203,7 +216,7 @@ h3{
 .footer-bottom {
     margin-top: 32px;
     text-align: center;
-    width: 1248px;
+    width: 90%;
     height: 57px;
     line-height: 114px;
     font-weight: 400;
@@ -211,7 +224,36 @@ h3{
     vertical-align: middle;
     color: #9CA3AF;
     border-top: 1px solid #374151;
+    margin-bottom: 55px;
 }
 #span-hello{
     color: #9E8842;
+}
+@media (max-width: 1100px) {
+    footer{
+        height: auto;
+    }
+    .footer-top {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+        
+    }
+    
+    .footer-bottom {
+        width: 90%; 
+        margin-bottom: 50px;
+    }
+
+    .footer-link {
+        justify-content: center;
+        flex-direction: column;
+    }
+    
+}
+@media (max-width:768px) {
+    .item{
+        text-align: center;
+    }
 }

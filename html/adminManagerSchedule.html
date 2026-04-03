@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/adminManagerSchedule.css">
-    <title>Document</title>
+    <title>Admin Manager Schedule</title>
 </head>
 <body>
     <section class="menu">
         <h3>Admin Dashboard</h3>
-        <div class="link">
-            <span class="choice-admin"><a href="">Quản lý lịch</a></span>
-            <span class="choice-admin"><a href="">Quản lý dịch vụ</a></span>
-            <span class="choice-admin"><a href="./home.html">Trang chủ</a></span>
-            <span class="choice-admin"><a href="./login.html">Đăng xuất</a></span>
+        <div class="list-link">
+            <nav class="choice-admin"><a href="./adminManagerSchedule.html">Quản lý lịch</a></nav>
+            <nav class="choice-admin"><a href="">Quản lý dịch vụ</a></nav>
+            <nav class="choice-admin"><a href="./home.html">Trang chủ</a></nav>
+            <nav id="log-out" class="logout choice-admin"><a href="./login.html">Đăng xuất</a></nav>
         </div>
     </section>
     <main>
@@ -21,28 +21,29 @@
         <div class="num-of-schedule">
              <div class="schedule">
                 <p class="name-of-schedule">Tổng số lịch Gym</p>
-                <p class="count-schedule">0</p>
+                <p class="count-gym count-schedule">0</p>
              </div>
              <div class="schedule">
                 <p class="name-of-schedule">Tổng số lịch Yoga</p>
-                <p class="count-schedule">0</p>
+                <p class="count-yoga count-schedule">0</p>
              </div>
              <div class="schedule">
                 <p class="name-of-schedule">Tổng số lịch Zumba</p>
-                <p class="count-schedule">0</p>
+                <p class="count-zumba count-schedule">0</p>
              </div>
         </div>
         <div class="chart">
 
         </div>
         <div class="filter">
-            <h3>Bộ lọc</h3>
             <form>
-                <div class="filter-input">
-                    <label for="filter-class">Lớp học</label>
-                    <select name="filter-class" id="filter-class">
-                        <option value="all">Tất cả</option>
-                        <option value="Gym">Gym</option>
+                <h3>Bộ lọc</h3>
+                <div class="form">
+                    <div class="filter-input">
+                        <label for="filter-class">Lớp học</label>
+                        <select name="filter-class" id="filter-class">
+                            <option value="all">Tất cả</option>
+                            <option value="Gym">Gym</option>
                         <option value="Yoga">Yoga</option>
                         <option value="Zumba">Zumba</option>
                     </select>
@@ -55,6 +56,7 @@
                     <label for="filter-date">Ngày</label>
                     <input type="date" name="filter-date" id="filter-date">
                 </div>
+            </div>
             </form>
 
             <table border="0" cellspacing="0" >

@@ -53,7 +53,7 @@ const loginAccount=()=>{
     if(listAccount[indexAccount].role==="user"){
         window.location.href="./home.html"  
     }else if(listAccount[indexAccount].role==="admin"){
-        window.location.href="./adminManager.html"
+        window.location.href="./adminManagerSchedule.html"
     }
 });
     }
