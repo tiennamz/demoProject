@@ -250,23 +250,21 @@ input,  select{
     margin-top: 5px;
     margin-left: 5px;
 }
-.modal {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000; 
-  pointer-events: none; 
-}
+
+
 
 .modal-box {
-  pointer-events: all; 
-  background: white;
-  padding: 30px;
-  border-radius: 8px;
-  width: 450px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    width: 450px;
+    height: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top:50%;
+    left: 50%;
+    z-index: 100; 
+    transform: translate(-50%, -50%);
 }
 
 .modal-title {
@@ -283,7 +281,7 @@ input,  select{
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 .btn {

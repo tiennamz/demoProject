@@ -1,8 +1,8 @@
 let listSchedules=[
     {id: `${Date.now()}`, userId:`Id2`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
-    {id: `${Date.now()+1}`, userId:`Id3`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+1}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
     {id: `${Date.now()+2}`, userId:`Id2`, classId:3, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
-    {id: `${Date.now()+3}`, userId:`Id3`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+3}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
 ]
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser"))
@@ -23,13 +23,13 @@ let tittleForm=document.getElementById("title-form")
 let confirmUpdateSchedule=document.getElementById("confirm-edit")
 let modalDelete=document.getElementById("modal-box")
 let btnCancelDeleteModal=document.getElementById("closeDeleteModal")
-let confirmDelete=document.getElementById("yesDelate")
+let confirmDelete=document.getElementById("yesDelete")
 let paginationElement=document.getElementById("pagination")
 
 // hàm tạo ngày
 const createDate=()=>{
     let now=new Date()
-    let date=`${now.getDate()}/${now.getMonth()+1}/${now.getFullYear()}`
+    let date=`${now.getFullYear()}-${now.getMonth()+1 < 10 ? 0 : ""}${now.getMonth()+1}-${now.getDate() < 10 ? 0 : ""}${now.getDate()}`
     return date
 }
 
@@ -77,11 +77,12 @@ btnAddSchedule.addEventListener("click", (e) => {
     openForm()
 })
 
-btnCancel.addEventListener("click", () => {
+btnCancel.addEventListener("click", (e) => {
+    e.preventDefault()
     closeForm()
     
-
 })
+
 btnCancelDeleteModal.addEventListener("click",closeModalDelete)
 
 overlay.addEventListener("click", () => {
@@ -230,7 +231,7 @@ confirmAddSchedule.addEventListener("click",(e)=>{
             time:`${timeInput.value}`,
             status:"pending",
             createdAt:`${createDate()}`,
-            updatedAt:""
+            updatedAt:`${createDate()}`
         }
         listSchedules.push(newSchudule)
         saveSchedule()

@@ -127,8 +127,58 @@
                     </td>
                 </tr>
             </tbody>
-
+            </table>
         </div>
     </main>
+    <form id="form-add-schedule" class="hidden form-add-schedule">
+            <h4 id="title-form" class="title-form">Chỉnh sửa lịch của người dùng</h4>
+            <div class="input-schedule">
+                <label for="class-schedule">Lớp học</label>
+                <select name="class-schedule" id="class-schedule">
+                    <option value="">Chọn lớp học</option>
+                    <option value="1">Gym</option>
+                    <option value="2">Yoga</option>
+                    <option value="3">Zumba</option>
+                </select>
+                <small class="valid" id="valid-class"></small>
+
+            </div>
+            <div class="input-schedule">
+                <label for="date-schedule">Ngày tập</label>
+                <input type="date" id="date-schedule">
+                <small class="valid" id="valid-date"></small>
+
+            </div>
+            <div class="input-schedule">
+                <label for="time-schedule">Khung giờ</label>
+                <select name="time-schedule" id="time-schedule">
+                    <option value="">Chọn khung giờ</option>
+                    <option value="7:00-9:00">7:00-9:00</option>
+                    <option value="9:00-11:00">9:00-11:00</option>
+                    <option value="13:00-15:00">13:00-15:00</option>
+                    <option value="15:00-17:00">15:00-17:00</option>
+                    <option value="17:00-19:00">17:00-19:00</option>
+                </select>
+                <small class="valid" id="valid-time"></small>
+            </div>
+            <div class="action">
+                <button type="reset" id="cancel-update" class="cancel">Hủy</button>
+                <button type="submit" id="confirm-add" class="confirm-add">Lưu</button>
+                <button hidden type="submit" id="confirm-edit" class="confirm-edit">Sửa</button>
+            </div>
+        </form>
+                <div class="hidden modal-box" id="modal-box">
+                    <h2 class="modal-title">Xác nhận xóa</h2>
+                    <p class="confirm-message">Bạn có chắc chắn muốn xóa lịch tập này không?</p>
+
+                    <div class="modal-footer">
+                        <button class="btn btn-gray" id="closeDeleteModal">Hủy bỏ</button>
+                        <button class="btn btn-red" id="yesDelete">Đồng ý xóa</button>
+                    </div>
+                </div>
+
+    <div id="overlay" class="overlay hidden"></div>
+
+    <script src="../javaScript/adminManagerSchedule.js"></script>
 </body>
 </html>

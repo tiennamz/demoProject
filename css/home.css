@@ -87,11 +87,15 @@ h1{
 #start-now{
     width: 194px;
     height: 44px;
+    text-align: center;
+    line-height: 44px;
     border-radius: 8px;
     background-color: #2563EB;
     border: none;
     color: #fff;
     margin: 24px 0 16px;
+    cursor: pointer;
+    text-decoration: none;
 }
 main{
     display: flex;
@@ -132,6 +136,14 @@ img{
 .item:hover{
     transform: translateY(-10px);
     box-shadow: 0px 8px 30px -8px #0000000D;
+
+}
+.img-booking{
+    width: 394.7px;
+    height: 192px;
+    object-fit: cover;
+    object-position: center;
+
 
 }
 .item button{
@@ -229,6 +241,74 @@ h3{
 #span-hello{
     color: #9E8842;
 }
+.title-form {
+    font-weight: 700;
+    font-size:x-large;
+    margin: 36px 0 24px;
+}
+.input-schedule {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+label{
+    color: #3A4150;
+    padding-bottom: 5px;
+}
+input,  select{
+    width: 338px;
+    height: 32px;
+    border-radius: 8px;
+    border: 2px solid #E8E8E8;
+    padding: 0 5px;
+}
+.action {
+    text-align: right;
+    margin-right: 28px;
+}
+.cancel {
+    color: #fff;
+    background-color: #6D727F;
+    height: 32px;
+    width: 48px;
+    border: none;
+    border-radius: 4px;
+}
+.confirm-edit, .confirm-add {
+    color: #fff;
+    background-color: #5B84EE;
+    height: 32px;
+    width: 48px;
+    border: none;
+    border-radius: 4px;
+}
+.hidden{
+    display: none;
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 99;
+}
+
+.form-add-schedule {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 100;
+    background: white;
+    padding: 24px;
+    border-radius: 8px;
+    min-width: 350px;
+}
+.valid{
+    color: red;
+    margin-top: 5px;
+    margin-left: 5px;
+}
 @media (max-width: 1100px) {
     footer{
         height: auto;
@@ -256,4 +336,7 @@ h3{
     .item{
         text-align: center;
     }
+}
+html{
+    scroll-behavior: smooth;
 }

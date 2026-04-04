@@ -22,38 +22,52 @@
         <section class="banner">
             <h1>Welcome to Our Gym</h1>
             <p>Transform Your Body, Transform Your Life</p>
-            <button class="btn" id="start-now" type="submit">Bắt đầu ngay</button>
+            <a id="start-now" href="#container">Bắt đầu ngay</a>
         </section>
         
         <h2>Các lớp học phổ biến</h2>
-        <div class="container">
-            <div class="item">
-                <img src="../img/Image [w-full].png" alt="">
-                <div class="content">
-                    <p class="name-of-class">Gym</p>
-                    <p class="describe">Tập luyện với các thiết bị hiện đại</p>
-                </div>
-                <button class="btn book" type="submit">Đặt lịch</button>
-            </div>
-            <div class="item">
-                <img src="../img/yoga.png" alt="">
-                <div class="content">
-                    <p class="name-of-class">Yoga</p>
-                    <p class="describe">Thư giãn và cân bằng tâm trí</p>
-                </div>
-                <button class="btn book" type="submit">Đặt lịch</button>
-            </div>
-            <div class="item">
-                <img src="../img/zumba.png" alt="">
-                <div class="content">
-                    <p class="name-of-class">Zumba</p>
-                    <p class="describe">Đốt cháy calories với những điệu nhảy sôi động</p>
-                </div>
-                <button class="btn book" type="submit">Đặt lịch</button>
-            </div>
+        <div id="container" class="container">
+            
         </div>
     
     </main>
+    <form class="hidden form-add-schedule">
+            <h4 id="title-form" class="title-form">Đặt lịch mới</h4>
+            <div class="input-schedule">
+                <label for="class-schedule">Lớp học</label>
+                <select name="class-schedule" id="class-schedule">
+                    <option value="">Chọn lớp học</option>
+                    <option value="1">Gym</option>
+                    <option value="2">Yoga</option>
+                    <option value="3">Zumba</option>
+                </select>
+                <small class="valid" id="valid-class"></small>
+
+            </div>
+            <div class="input-schedule">
+                <label for="date-schedule">Ngày tập</label>
+                <input type="date" id="date-schedule">
+                <small class="valid" id="valid-date"></small>
+
+            </div>
+            <div class="input-schedule">
+                <label for="time-schedule">Khung giờ</label>
+                <select name="time-schedule" id="time-schedule">
+                    <option value="">Chọn khung giờ</option>
+                    <option value="7:00-9:00">7:00-9:00</option>
+                    <option value="9:00-11:00">9:00-11:00</option>
+                    <option value="13:00-15:00">13:00-15:00</option>
+                    <option value="15:00-17:00">15:00-17:00</option>
+                    <option value="17:00-19:00">17:00-19:00</option>
+                </select>
+                <small class="valid" id="valid-time"></small>
+            </div>
+            <div class="action">
+                <button type="reset" class="cancel">Hủy</button>
+                <button type="submit" id="confirm-add" class="confirm-add">Lưu</button>
+            </div>
+        </form>
+    <div class="overlay hidden"></div>
     <footer>
         <div class="footer-top">
             <div class="about">

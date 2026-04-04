@@ -30,41 +30,29 @@
                     <td>Thao tác</td>
                 </tr>
             </thead>
-            <tbody>
-                <tr>
-                    <td>Gym</td>
-                    <td class="describe">Tập luyện với các thiết bị hiện đại</td>
-                    <td><img class="img-service" src="../img/Image [w-full].png" alt=""></td>
-                    <td> <button class="btn btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
-                </tr>
-                <tr>
-                    <td>Yoga</td>
-                    <td class="describe">Thư giãn và cân bằng tâm trí</td>
-                    <td><img class="img-service" src="../img/yoga.png" alt=""></td>
-                    <td> <button class="btn  btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
-                </tr>
-                <tr>
-                    <td>Zumba</td>
-                    <td class="describe">Đốt cháy calories với những điệu nhảy sôi động</td>
-                    <td><img class="img-service" src="../img/zumba.png" alt=""></td>
-                    <td><button class="btn btn-edit-service">Sửa</button> <button class="btn btn-delete-service">Xóa</button></td>
-                </tr>
+            <tbody id="list-class">
+
             </tbody>
         </table>
     </main>
     <form id="popup-add-service" class="hidden popup-add-service">
-        <h3 class="title-form">Thêm dịch vụ mới</h3>
+        <h3 id="title-form" class="title-form">Thêm dịch vụ mới</h3>
         <div class="input-add">
             <label for="input-name-of-service">Tên dịch vụ</label>
             <input type="text" name="input-name-of-service" id="input-name-of-service">
+            <small id="validate-name" class="valid"></small>
         </div>
         <div class="input-add">
             <label for="describe-service">Mô tả</label>
-            <textarea rows="4" name="describe-service" id="describe-service"></textarea>
+            <textarea rows="4" name="input-describe-service" id="input-describe-service"></textarea>
+            <small id="validate-describe" class="valid"></small>
+
         </div>
         <div class="input-add">
             <label for="img-service">URL Hình ảnh</label>
-            <input type="text" name="img-service" id="img-service">
+            <input type="text" name="input-img-service" id="input-img-service">
+            <small id="validate-img" class="valid"></small>
+
         </div>
         <div class="btn-action-service">
             <button id="btn-cancel" class="btn-cancel">Hủy</button>
@@ -81,6 +69,7 @@
         </div>
     </div>
     <div id="overlay" class="hidden overlay"></div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../javaScript/adminManagerService.js"></script>
 </body>
 </html>
