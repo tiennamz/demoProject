@@ -197,7 +197,7 @@ addInputNameClass()
 
 // check validate
 
-const checkValidateForm=()=>{
+const checkValidateForm=(idEdit=null)=>{
 
     let rawClass=classInput.value
     let rawDate=dateInput.value
@@ -232,7 +232,7 @@ const checkValidateForm=()=>{
     }
     if(isValid==true){
         let isExisted=ownSchedule.some((schudule)=>{
-            return schudule.date===rawDate && schudule.time===rawTime 
+            return schudule.date===rawDate && schudule.time===rawTime && schudule.id!= idEdit
         })
         if(isExisted){
             validateDate.innerText="Bạn đã có lịch tập tại thời điểm này rồi "
@@ -283,9 +283,11 @@ const findIndexById=(idSearch)=>{
     return indexSearch
 }
 let indexEdit=-1
+let idEdit
 const updateSchedule=(id)=>{
     let index=findIndexById(id)
     indexEdit=index
+    idEdit=id
     openForm()
     classInput.value=listSchedules[indexEdit].classId
     timeInput.value=listSchedules[indexEdit].time
@@ -297,7 +299,7 @@ const updateSchedule=(id)=>{
 confirmUpdateSchedule.addEventListener("click",(e)=>{
     e.preventDefault()
 
-    if(checkValidateForm()){
+    if(checkValidateForm(idEdit)){
         listSchedules[indexEdit].classId=classInput.value
         listSchedules[indexEdit].time=timeInput.value
         listSchedules[indexEdit].date=dateInput.value
