@@ -22,7 +22,20 @@ let btnCancelDelete=document.getElementById("closeDeleteModal")
 let selectFilterNameClass=document.getElementById("filter-class")
 let totalClass=document.getElementById("num-of-schedule")
 let filterClass=document.getElementById("filter-class")
+let filterEmail=document.getElementById("filter-email")
+let filterDate=document.getElementById("filter-date")
 let linkElementSchedule=document.getElementById("link-manager-schedule")
+let inputUpdClass=document.getElementById("class-schedule")
+let inputUpdDate=document.getElementById("date-schedule")
+let inputUpdTime=document.getElementById("time-schedule")
+let btnConfirmUpdate=document.getElementById("confirm-edit")
+let validateDate=document.getElementById("valid-date")
+let validateClass=document.getElementById("valid-class")
+let validateTime=document.getElementById("valid-time")
+let btnConfirmDelete=document.getElementById("yesDelete")
+
+
+
 
 //  popup sửa 
 const openPopupUpdate=()=>{
@@ -33,6 +46,9 @@ const openPopupUpdate=()=>{
 const closePopupUpdate=()=>{
     formUpdateSchedule.classList.add("hidden")
     overlay.classList.add("hidden")
+    validateClass.innerText=""
+    validateDate.innerText=""
+    validateTime.innerText=""
 }
 
 // popup confirm xóa
@@ -45,6 +61,7 @@ const openModalConfirmDelete=()=>{
 const closeModalConfirmDelete=()=>{
     modalConfirmDelete.classList.add("hidden")
     overlay.classList.add("hidden")
+    
 }
 
 overlay.addEventListener("click",()=>{
@@ -55,12 +72,21 @@ overlay.addEventListener("click",()=>{
 btnCancelUpdate.addEventListener("click",(e)=>{
     e.preventDefault()
     closePopupUpdate()
+    Swal.fire({
+  icon: "error",
+  title: "Đã hủy chỉnh sửa",
+  timer:3000
+    });
 })
 
-btnCancelDelete
-.addEventListener("click",(e)=>{
+btnCancelDelete.addEventListener("click",(e)=>{
     e.preventDefault()
     closeModalConfirmDelete()
+    Swal.fire({
+  icon: "error",
+  title: "Đã hủy xóa lịch",
+  timer:3000
+    });
 })
 
 
@@ -71,6 +97,11 @@ const getDataSchedule=()=>{
     }
 }
 getDataSchedule()
+
+const saveSchedule=()=>{
+    localStorage.setItem("Schedules", JSON.stringify(listSchedules))
+}
+
 const getDataClass=()=>{
     let data=localStorage.getItem("Class")
     if(data){
@@ -92,6 +123,16 @@ const addNewClassIntoFilter=()=>{
     })
 }
 addNewClassIntoFilter()
+
+const addNewClassIntoFormUpdate=()=>{
+    inputUpdClass.innerHTML=`<option value="">Chọn lớp học</option>`
+    listClass.forEach((service)=>{
+        inputUpdClass.innerHTML+=`<option value="${service.id}">${service.name}</option>`
+    })
+}
+addNewClassIntoFormUpdate()
+
+
 
 const checkHref=()=>{
     if(linkElementSchedule.href==="http://127.0.0.1:5501/html/adminManagerSchedule.html"){
@@ -132,8 +173,8 @@ const dataAdmin=()=>{
 }
 
 
+dataAdmin()
 const renderDataSchedule=()=>{
-    dataAdmin()
     if(adminListSchedules.length===0){
         tbodyListSchedule.innerHTML=`<tr><td colspan="6" style="text-align: center;">Chưa có ai đặt lịch tập</td></tr>`
         return
@@ -165,8 +206,8 @@ const renderDataSchedule=()=>{
                 <td>${nameUser}</td>
                 <td>${emailUser}</td>
                 <td>
-                    <button class="edit-schedule" >Sửa</button>
-                    <button class="delete-schedule" >Xóa</button>
+                    <button onclick="updateSchedule(${user.id})" class="edit-schedule" >Sửa</button>
+                    <button onclick="deleteSchedule(${user.id})" class="delete-schedule" >Xóa</button>
                 </td>
             </tr>
         `
@@ -174,6 +215,126 @@ const renderDataSchedule=()=>{
 }
 renderDataSchedule()
 
-// filter shedule
+const filterSchedule=()=>{
+    getDataSchedule()
+    adminListSchedules=listSchedules.filter((schedule)=>{
+        return schedule.status!=="cancel"
+    })
+    if(filterClass.value!=="all"){   
+        adminListSchedules=adminListSchedules.filter((schedule)=>{
+            return schedule.classId==filterClass.value 
+        })
+    }
+
+    if(filterEmail.value!==""){
+        let arrayIdIncludeEmailInput=listAccount.filter((acc)=>{
+            return acc.email.toLowerCase().includes(filterEmail.value.toLowerCase().trim())
+        }).map(acc=>acc.id)
+
+        adminListSchedules=adminListSchedules.filter((schedule)=>{
+            return arrayIdIncludeEmailInput.includes(schedule.userId)
+        })
+    }
+
+    if(filterDate.value!==""){
+        adminListSchedules=adminListSchedules.filter((schedule)=>{
+            return schedule.date===filterDate.value
+        })
+    }
+    renderDataSchedule()
+}
+
+filterClass.addEventListener("change",filterSchedule)
+filterEmail.addEventListener("keyup",filterSchedule)
+filterDate.addEventListener("change",filterSchedule)
 
 
+// U
+const findIndexById=(id)=>{
+    let indexSearch=listSchedules.findIndex((schedule)=>{
+        return schedule.id==id
+    })
+    return indexSearch
+}
+let indexUpdate=-1
+const updateSchedule=(id)=>{
+    indexUpdate=findIndexById(id)
+    openPopupUpdate()
+    inputUpdClass.value=listSchedules[indexUpdate].classId
+    inputUpdDate.value=listSchedules[indexUpdate].date
+    inputUpdTime.value=listSchedules[indexUpdate].time
+}
+btnConfirmUpdate.addEventListener("click",(e)=>{
+    e.preventDefault()
+    let rawClass=inputUpdClass.value
+    let rawDate=inputUpdDate.value
+    let rawTime=inputUpdTime.value
+    
+    validateClass.innerText=""
+    validateDate.innerText=""
+    validateTime.innerText=""
+    const isDatePast=()=>{
+        let isPast=false
+        let mns=+new Date(rawDate)
+        if(mns-Date.now()<0){
+            isPast=true
+        }        
+        return isPast
+    }
+    let isValid=true
+    if(rawClass==""){
+        validateClass.innerText="Lớp học trống"
+    isValid=false
+    }
+    if(rawDate==""){
+        validateDate.innerText="Ngày tập trống"
+        isValid=false
+    }else if(isDatePast()){
+        validateDate.innerText="Ngày tập đã qua"
+        isValid=false
+    }
+    if(rawTime==""){
+        validateTime.innerText="Giờ tập trống"
+        isValid=false
+    }
+    if(isValid==true){
+        let isExisted=ownSchedule.some((schudule)=>{
+            return schudule.date===rawDate && schudule.time===rawTime 
+        })
+        if(isExisted){
+            validateDate.innerText="Bạn đã có lịch tập tại thời điểm này rồi "
+            validateTime.innerText="Bạn đã có lịch tập tại thời điểm này rồi "
+            isValid=false
+        }
+    }
+    if(isValid){
+        listSchedules[indexUpdate].classId=inputUpdClass.value
+        listSchedules[indexUpdate].date=inputUpdDate.value
+        listSchedules[indexUpdate].time=inputUpdTime.value
+        saveSchedule()
+        closePopupUpdate()
+        renderDataSchedule()
+        Swal.fire({
+            title: "Oke rồi đấy!",
+            icon: "success",
+            text:"Đã sửa lịch người dùng thành công",
+            timer: 3000
+        });
+}
+})
+let indexDelete=-1
+const deleteSchedule=(id)=>{
+    openModalConfirmDelete()
+    indexDelete=findIndexById(id)
+}
+btnConfirmDelete.addEventListener("click",()=>{
+    listSchedules[indexDelete].status="cancel"
+    saveSchedule()
+    renderDataSchedule()
+    closeModalConfirmDelete()
+    Swal.fire({
+    title: "Oke rồi nhá",
+    icon: "success",
+    text: "Đã xóa lịch tập thành công"
+    });  
+})
