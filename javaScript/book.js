@@ -198,7 +198,7 @@ addInputNameClass()
 // check validate
 
 const checkValidateForm=(idEdit=null)=>{
-
+    getDataSchedule()
     let rawClass=classInput.value
     let rawDate=dateInput.value
     let rawTime=timeInput.value

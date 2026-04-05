@@ -158,6 +158,9 @@ renderDataClass()
 
 btnConfirmAddService.addEventListener("click",(e)=>{
     e.preventDefault()
+    nameValidate.innerText=""
+    describeValidate.innerText=""
+    imgValidate.innerText=""
     // tên class
     let isValid=true
     let rawName=nameClassInput.value.trim()
@@ -230,6 +233,9 @@ const updateService=(id)=>{
 }
 btnConfirmEdit.addEventListener("click",(e)=>{
     e.preventDefault()
+    nameValidate.innerText=""
+    describeValidate.innerText=""
+    imgValidate.innerText=""
     let isValid=true
     let rawName=nameClassInput.value.trim()
     const isExistedNameOfClass=()=>{

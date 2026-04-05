@@ -132,6 +132,10 @@ rePasswordInput.addEventListener("keydown",(e)=>{
 })
 btnRegister.addEventListener("click",(e)=>{
     e.preventDefault()
+    fullnameValidate.innerText=""
+    emailValidate.innerText=""
+    passwordValidate.innerText=""
+    rePasswordValidate.innerText=""
     registerAccount()
 })
 

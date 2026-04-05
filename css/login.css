@@ -67,7 +67,10 @@ input{
 
 .validate {
     color: red;
+    margin-top: 5px;
+    margin-left: 5px;
 }
+
 .btn-login {
     width: 384px;
     height: 40px;

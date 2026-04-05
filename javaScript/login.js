@@ -44,10 +44,11 @@ const loginAccount=()=>{
     if(isAccount===true){
         Swal.fire({
     title: 'Thành công!',
-    text: 'Đăng ký tài khoản thành công. Hệ thống sẽ chuyển đến trang tiếp theo',
+    text: 'Đăng nhập tài khoản thành công. Hệ thống sẽ chuyển đến trang tiếp theo',
     icon: 'success',
     confirmButtonColor: '#3085d6',
-    confirmButtonText: 'Chuyển trang ngay'
+    timer:3000,
+    confirmButtonText: 'Chuyển trang ngay',
 }).then(() => {
     localStorage.setItem("currentUser", JSON.stringify(listAccount[indexAccount]))
     if(listAccount[indexAccount].role==="user"){

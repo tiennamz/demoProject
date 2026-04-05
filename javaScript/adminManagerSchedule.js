@@ -41,6 +41,8 @@ let btnConfirmDelete=document.getElementById("yesDelete")
 const openPopupUpdate=()=>{
     formUpdateSchedule.classList.remove("hidden")
     overlay.classList.remove("hidden")
+    
+    
 }
 
 const closePopupUpdate=()=>{

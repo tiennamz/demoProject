@@ -88,6 +88,8 @@ color: #2563EB;
 
 .validate {
     color:red;
+    margin-top: 5px;
+    margin-left: 5px;
 }
 span{
     color:red;
