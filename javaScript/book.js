@@ -4,6 +4,13 @@ let listSchedules=[
     {id: `${Date.now()+2}`, userId:`Id2`, classId:3, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
     {id: `${Date.now()+3}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
 ]
+// localStorage.setItem("Schedules",JSON.stringify(listSchedules))
+
+let listClass=[
+    {id: 1, name: "Gym", description:"Tập luyện với các thiết bị hiện đại", image:"../img/Image [w-full].png" },
+    {id: 2, name: "Yoga", description:"Thư giãn và cân bằng tâm trí", image:"../img/yoga.png" },
+    {id: 3, name: "Zumba", description:"Đốt cháy calories với những điệu nhảy sôi động", image:"../img/zumba.png" },
+]
 
 let currentUser = JSON.parse(localStorage.getItem("currentUser"))
 let btnAddSchedule = document.getElementsByClassName("add-schedule")[0]
@@ -101,10 +108,19 @@ getDataSchedule()
 const saveSchedule=()=>{
     localStorage.setItem("Schedules", JSON.stringify(listSchedules))
 }
+const getDataClass=()=>{
+    let data=localStorage.getItem("Class")
+    if(data){
+        listClass=JSON.parse(data)
+    }
+    listClass.sort((a,b)=>{
+        return a.name.localeCompare(b.name,'VN-vi')
+    })
+}
+getDataClass()
 
 let ownSchedule
 
-console.log(currentUser);
 
 const render=()=>{
     getDataSchedule()
@@ -125,21 +141,19 @@ const render=()=>{
         Swal.fire({
     icon: "error",
     title: "Oops...",
-    text: "Danh sách lịch tập trống",
-});
-return
+    text: "Danh sách lịch tập trống",   
+        });
+        return
 }
 
 scheduleElement.innerHTML=""
 ownSchedule.forEach((schedule)=>{
     let nameClass
-    if(schedule.classId==1){
-        nameClass="Gym"
-    }else if(schedule.classId==2){
-        nameClass="Yoga"
-    }else if(schedule.classId==3){
-        nameClass="Zumba"
-    }
+    listClass.forEach((service)=>{
+        if(schedule.classId==service.id){
+            nameClass=service.name
+        }
+    })
     
     scheduleElement.innerHTML+=
         `
@@ -167,6 +181,19 @@ if(currentUser==null){
     spanLogin.style.display="none"
     
 }
+
+const addInputNameClass=()=>{
+    getDataClass()
+    classInput.innerHTML=`<option value="">Chọn lớp học</option>`
+    listClass.forEach((service)=>{
+        classInput.innerHTML+=`
+            <option value="${service.id}">${service.name}</option>
+        `
+    })
+}
+addInputNameClass()
+
+
 
 // check validate
 

@@ -3,7 +3,7 @@ let listClass=[
     {id: 2, name: "Yoga", description:"Thư giãn và cân bằng tâm trí", image:"../img/yoga.png" },
     {id: 3, name: "Zumba", description:"Đốt cháy calories với những điệu nhảy sôi động", image:"../img/zumba.png" },
 ]
-
+let listSchedules=[]
 
 // khai báo 
 let overlay=document.getElementById("overlay")
@@ -23,8 +23,7 @@ let imgValidate=document.getElementById("validate-img")
 let titleForm=document.getElementById("title-form")
 let btnConfirmEdit=document.getElementById("btn-confirm-edit-service")
 let btnConfirmDeleteService=document.getElementById("btn-confirm-delete-service")
-
-
+let linkElementService=document.getElementById("link-manager-service")
 
 
 
@@ -103,7 +102,13 @@ btnAddService.addEventListener("click",(e)=>{
     openForm()
 })
 
-
+const checkHref=()=>{
+    if(linkElementService.href==="http://127.0.0.1:5501/html/adminManagerService.html"){
+        linkElementService.classList.add("link-current")
+    }
+    
+}
+checkHref()
 
 
 
@@ -117,6 +122,18 @@ const getDataClass=()=>{
 
 const saveDataClass=()=>{
     localStorage.setItem("Class",JSON.stringify(listClass))
+}
+
+
+const getDataSchedule=()=>{
+    let data=localStorage.getItem("Schedules")
+    if(data){
+        listSchedules=JSON.parse(data)
+    }
+}
+
+const saveDataShedule=()=>{ 
+    localStorage.setItem("Schedules",JSON.stringify(listSchedules))
 }
 
 const renderDataClass=()=>{
@@ -244,7 +261,7 @@ btnConfirmEdit.addEventListener("click",(e)=>{
         isValid=false
     }
     if(isValid){
-        listClass[indexUpdate].name=rawName
+        listClass[indexUpdate].name=rawName[0].toUpperCase()+rawName.slice(1)
         listClass[indexUpdate].description=rawDescribe
         listClass[indexUpdate].image=rawImage
         saveDataClass()
@@ -262,13 +279,20 @@ btnConfirmEdit.addEventListener("click",(e)=>{
 
 
 let indexDelete=-1
+let idDelete
 const deleteService=(id)=>{
+    idDelete=id
     indexDelete=findIndexById(id)
     openModalConfirmDelete()
 }
+
 btnConfirmDeleteService.addEventListener("click",()=>{
     listClass.splice(indexDelete,1)
     saveDataClass()
+    listSchedules=listSchedules.filter((schedule)=>{
+        return schedule.id !== `${idDelete}`
+    })
+    saveDataShedule()
     Swal.fire({
             title: "Thành công!",
             icon: "success",
@@ -278,3 +302,4 @@ btnConfirmDeleteService.addEventListener("click",()=>{
     closeModalConfirmDelete()
     renderDataClass()
 })
+console.log(listSchedules);

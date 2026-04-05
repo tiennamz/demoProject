@@ -10,7 +10,7 @@
     <section class="menu">
         <h3>Admin Dashboard</h3>
         <div class="list-link">
-            <nav class="choice-admin"><a href="./adminManagerSchedule.html">Quản lý lịch</a></nav>
+            <nav class="choice-admin"><a class="link-current" id="link-manager-schedule" href="./adminManagerSchedule.html">Quản lý lịch</a></nav>
             <nav class="choice-admin"><a href="./adminManagerService.html">Quản lý dịch vụ</a></nav>
             <nav class="choice-admin"><a href="./home.html">Trang chủ</a></nav>
             <nav id="log-out" class="logout choice-admin"><a href="./login.html">Đăng xuất</a></nav>
@@ -18,7 +18,7 @@
     </section>
     <main>
         <h2>Thống kê lịch tập</h2>
-        <div class="num-of-schedule">
+        <div id="num-of-schedule" class="num-of-schedule">
              <div class="schedule">
                 <p class="name-of-schedule">Tổng số lịch Gym</p>
                 <p class="count-gym count-schedule">0</p>
@@ -44,8 +44,8 @@
                         <select name="filter-class" id="filter-class">
                             <option value="all">Tất cả</option>
                             <option value="Gym">Gym</option>
-                        <option value="Yoga">Yoga</option>
-                        <option value="Zumba">Zumba</option>
+                            <option value="Yoga">Yoga</option>
+                            <option value="Zumba">Zumba</option>
                     </select>
                 </div>
                 <div class="filter-input">
@@ -71,61 +71,7 @@
                 </tr>
             </thead>
             <tbody class="list-schedule" id="list-schedule">
-                <tr>
-                    <td>Yoga</td>
-                    <td>2025-05-02</td>
-                    <td>14:00-16:00</td>
-                    <td>NGUYEN THANH BINH PHUOC</td>
-                    <td>tieucamieu@gmail.com</td>
-                    <td>
-                        <button class="edit-schedule" >Sửa</button>
-                        <button class="delete-schedule" >Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Zumba</td>
-                    <td>2025-04-24</td>
-                    <td>14:00-16:00</td>
-                    <td>NGUYEN THANH BINH PHUOC</td>
-                    <td>tieucamieu@gmail.com</td>
-                    <td>
-                        <button class="edit-schedule" >Sửa</button>
-                        <button class="delete-schedule" >Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Gym</td>
-                    <td>2025-04-12</td>
-                    <td>7:00-9:00</td>
-                    <td>NGUYEN THANH BINH PHUOC</td>
-                    <td>tieucamieu@gmail.com</td>
-                    <td>
-                        <button class="edit-schedule" >Sửa</button>
-                        <button class="delete-schedule" >Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Yoga</td>
-                    <td>2025-05-02</td>
-                    <td>14:00-16:00</td>
-                    <td>Admin</td>
-                    <td>admin@gmail.com</td>
-                    <td>
-                        <button class="edit-schedule" >Sửa</button>
-                        <button class="delete-schedule" >Xóa</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Yoga</td>
-                    <td>2025-05-02</td>
-                    <td>14:00-16:00</td>
-                    <td>admin</td>
-                    <td>admin@gmail.com</td>
-                    <td>
-                        <button class="edit-schedule" >Sửa</button>
-                        <button class="delete-schedule" >Xóa</button>
-                    </td>
-                </tr>
+
             </tbody>
             </table>
         </div>

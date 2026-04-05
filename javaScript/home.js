@@ -3,9 +3,16 @@ let listClass=[
     {id: 2, name: "Yoga", description:"Thư giãn và cân bằng tâm trí", image:"../img/yoga.png" },
     {id: 3, name: "Zumba", description:"Đốt cháy calories với những điệu nhảy sôi động", image:"../img/zumba.png" },
 ]
+let listSchedules=[
+    {id: `${Date.now()}`, userId:`Id2`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+1}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+2}`, userId:`Id2`, classId:3, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+3}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+]
 
 // khai báo
-let listSchedules=JSON.parse(localStorage.getItem("Schedules")) || []
+
+listSchedules=JSON.parse(localStorage.getItem("Schedules")) || []
 let currentUser=JSON.parse(localStorage.getItem("currentUser"))
 let spanManagerAdmin=document.getElementById('span-manager-admin')
 let spanHello=document.getElementById("span-hello")
@@ -24,7 +31,6 @@ let formAddSchedule = document.getElementsByClassName("form-add-schedule")[0]
 let btnAddSchedule = document.getElementsByClassName("confirm-add")[0]
 let btnCancel = document.getElementsByClassName("cancel")[0]
 let overlay = document.getElementsByClassName("overlay")[0]
-
 
 
 // ẩn hiện khi chưa gì đã đăng nhập
@@ -56,26 +62,7 @@ spanLogout.addEventListener("click",()=>{
     localStorage.removeItem("currentUser")
 })
 
-// sang trang đăng nhập khi chưa đăng nhập
-const navigateLogin=()=>{
-    if(currentUser==undefined){
-        btnAddShedule.forEach((btn)=>{
-            btn.addEventListener("click",()=>{
-                Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Bạn chưa đăng nhập!!! Đang chuyển đến trang đang nhập cho bạn",
-            timer: 5000,
-            timerProgressBar: true,
-                }).then(()=>{
-                    window.location.href="./login.html"
-                })
-            })
-        })
-        return
-    }
-}
-navigateLogin()
+
 
 const getDataClass=()=>{
     let data=localStorage.getItem("Class")
@@ -87,7 +74,7 @@ const getDataClass=()=>{
     })
 
 }
-
+getDataClass()
 
 let renderDataService=()=>{
     getDataClass()
@@ -148,12 +135,34 @@ overlay.addEventListener("click", () => {
 
 let idClass
 const bookingClass=(id)=>{
+    // sang trang đăng nhập khi chưa đăng nhập
+        if(currentUser==undefined){ 
+                Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Bạn chưa đăng nhập!!! Đang chuyển đến trang đang nhập cho bạn",
+            timer: 5000,
+            timerProgressBar: true,
+                }).then(()=>{
+                    window.location.href="./login.html"
+                })
+    }
     openForm()
     classInput.value=id
     idClass=id
     
 }
 
+const addInputNameClass=()=>{
+    getDataClass()
+    classInput.innerHTML=`<option value="">Chọn lớp học</option>`
+    listClass.forEach((service)=>{
+        classInput.innerHTML+=`
+            <option value="${service.id}">${service.name}</option>
+        `
+    })
+}
+addInputNameClass()
 
 btnAddSchedule.addEventListener("click",(e)=>{
     e.preventDefault()

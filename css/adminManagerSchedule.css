@@ -55,6 +55,17 @@ nav a{
 #log-out a{
     color: #F87171;
 }
+.link-current{
+    background-color: #4B5563;
+    display: inline-block;
+    width: 90%;
+    height: 40px;
+    border-radius: 4px;
+    line-height: 40px;
+    border: none;
+    padding-left: 10px;
+    transform: translateX(-10px);
+}
 main{
     width: 75%;
     margin-left: 24px;
@@ -71,7 +82,7 @@ h2{
     margin-bottom: 24px;
 }
 .schedule {
-    width: 468px;
+    width: 465px;
     height: 120px;
     border-radius: 8px;
     background-color: #FFFFFF;
