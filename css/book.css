@@ -159,6 +159,9 @@ tr{
 tr:hover{
     background-color: #adaeb1;
 }
+thead tr:hover{
+    background-color: #E5E7EB;
+}
 td{
     font-weight: 540;
     border-bottom:1px solid gray ;

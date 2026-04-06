@@ -72,7 +72,6 @@ const getDataClass=()=>{
     listClass.sort((a,b)=>{
         return a.name.localeCompare(b.name,'VN-vi')
     })
-
 }
 getDataClass()
 
