@@ -345,7 +345,7 @@ btnConfirmDelete.addEventListener("click",()=>{
     data: {
       labels: arrayClassAndCount.map(el=>el.name),
       datasets: [{
-        label: 'Số lượng học sinh',
+        label: 'Số lượng lịch học',
         data: arrayClassAndCount.map((el)=>el.count),
         borderWidth: 1
       }]
