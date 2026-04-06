@@ -91,7 +91,6 @@ btnCancelDelete.addEventListener("click",(e)=>{
     });
 })
 
-
 const getDataSchedule=()=>{
     let data=localStorage.getItem("Schedules")
     if(data){
@@ -115,8 +114,6 @@ const getDataClass=()=>{
 }
 getDataClass()
 
-
-
 const addNewClassIntoFilter=()=>{
     getDataClass()
     filterClass.innerHTML=`<option value="all">Tất cả</option>`
@@ -134,8 +131,6 @@ const addNewClassIntoFormUpdate=()=>{
 }
 addNewClassIntoFormUpdate()
 
-
-
 const checkHref=()=>{
     if(linkElementSchedule.href==="http://127.0.0.1:5501/html/adminManagerSchedule.html"){
         linkElementSchedule.classList.add("link-current")
@@ -143,8 +138,6 @@ const checkHref=()=>{
     
 }
 checkHref()
-
-
 
 const renderStatisticalClass=()=>{
     getDataSchedule()
@@ -160,10 +153,6 @@ const renderStatisticalClass=()=>{
 
 }
 renderStatisticalClass()
-    
-
-
-
 
 let adminListSchedules
 const dataAdmin=()=>{
@@ -173,7 +162,6 @@ const dataAdmin=()=>{
     })   
 
 }
-
 
 dataAdmin()
 const renderDataSchedule=()=>{
@@ -189,7 +177,6 @@ const renderDataSchedule=()=>{
                 if(user.classId==service.id){
                     nameClass=service.name
                 }
-
             })
             let nameUser
             let emailUser
@@ -249,7 +236,6 @@ const filterSchedule=()=>{
 filterClass.addEventListener("change",filterSchedule)
 filterEmail.addEventListener("keyup",filterSchedule)
 filterDate.addEventListener("change",filterSchedule)
-
 
 // U
 const findIndexById=(id)=>{

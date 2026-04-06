@@ -103,14 +103,12 @@ btnAddService.addEventListener("click",(e)=>{
 })
 
 const checkHref=()=>{
-    if(linkElementService.href==="http://127.0.0.1:5501/html/adminManagerService.html"){
+    if(linkElementService.href==="http://127.0.0.1:5500/html/adminManagerService.html"){
         linkElementService.classList.add("link-current")
+
     }
-    
 }
 checkHref()
-
-
 
 // CRUD
 const getDataClass=()=>{
@@ -123,7 +121,6 @@ const getDataClass=()=>{
 const saveDataClass=()=>{
     localStorage.setItem("Class",JSON.stringify(listClass))
 }
-
 
 const getDataSchedule=()=>{
     let data=localStorage.getItem("Schedules")
@@ -154,7 +151,6 @@ const renderDataClass=()=>{
     })
 }
 renderDataClass()
-
 
 btnConfirmAddService.addEventListener("click",(e)=>{
     e.preventDefault()
@@ -308,4 +304,3 @@ btnConfirmDeleteService.addEventListener("click",()=>{
     closeModalConfirmDelete()
     renderDataClass()
 })
-console.log(listSchedules);

@@ -2,6 +2,16 @@ let listAccount=[
     {id: `Id1`, email: "abc@gmail.com", password:"admin123", fullname:"TienNam", phone:" 09354873264", role:"admin", createAt:"31/3/2026"},
     {id: `Id2`, email: "tiennamz@gmail.com", password:"tiennamz@gmail.com", fullname:"Tien Nam", phone:" 09354873264", role:"user", createAt:"31/3/2026"}
 ]
+let listSchedules=[
+    {id: `${Date.now()}`, userId:`Id2`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+1}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+2}`, userId:`Id2`, classId:3, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+    {id: `${Date.now()+3}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
+]
+if(!localStorage.getItem("Schedules")){
+    localStorage.setItem("Schedules",JSON.stringify(listSchedules))
+}
+
 
 // khai báo
 let emailInput=document.getElementById("email-inp")
