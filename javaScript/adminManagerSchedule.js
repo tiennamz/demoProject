@@ -33,6 +33,8 @@ let validateDate=document.getElementById("valid-date")
 let validateClass=document.getElementById("valid-class")
 let validateTime=document.getElementById("valid-time")
 let btnConfirmDelete=document.getElementById("yesDelete")
+let chartElement=document.getElementById("chart-schudule")
+const ctx = document.getElementById('chart-schudule');
 
 
 
@@ -326,3 +328,33 @@ btnConfirmDelete.addEventListener("click",()=>{
     text: "Đã xóa lịch tập thành công"
     });  
 })
+
+ getDataClass()
+    getDataSchedule()
+    let arrayClassAndCount=listClass.map((service)=>{
+        return {
+            name: service.name,
+            count: listSchedules.filter((schedule)=>{
+                return schedule.classId==service.id && schedule.status!=="cancel"
+            }).length
+        }
+    })
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: arrayClassAndCount.map(el=>el.name),
+      datasets: [{
+        label: 'Số lượng học sinh',
+        data: arrayClassAndCount.map((el)=>el.count),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });

@@ -12,7 +12,6 @@ let listSchedules=[
 
 // khai báo
 
-listSchedules=JSON.parse(localStorage.getItem("Schedules")) || []
 let currentUser=JSON.parse(localStorage.getItem("currentUser"))
 let spanManagerAdmin=document.getElementById('span-manager-admin')
 let spanHello=document.getElementById("span-hello")
@@ -125,6 +124,11 @@ const closeForm=()=> {
 btnCancel.addEventListener("click", (e) => {
     e.preventDefault()
     closeForm()
+    Swal.fire({
+  icon: "error",
+  title: "Đã hủy thêm lịch",
+  timer:3000
+});
     
 })
 
@@ -220,5 +224,10 @@ btnAddSchedule.addEventListener("click",(e)=>{
         listSchedules.push(newSchedule)
         localStorage.setItem("Schedules",JSON.stringify(listSchedules))
         closeForm()
+        Swal.fire({
+            title: "Thêm lịch tập mới thành công",
+            icon: "success",
+            timer:3000
+});
     }
 })

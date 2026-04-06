@@ -325,6 +325,11 @@ input,  select{
     margin-top: 5px;
     margin-left: 5px;
 }
+.chart{
+    background-color: #fff;
+    margin-bottom: 20px;
+    
+}
 @media (max-width: 1400px) {   
     .menu {
         min-width: 160px;

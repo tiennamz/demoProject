@@ -19,21 +19,10 @@
     <main>
         <h2>Thống kê lịch tập</h2>
         <div id="num-of-schedule" class="num-of-schedule">
-             <div class="schedule">
-                <p class="name-of-schedule">Tổng số lịch Gym</p>
-                <p class="count-gym count-schedule">0</p>
-             </div>
-             <div class="schedule">
-                <p class="name-of-schedule">Tổng số lịch Yoga</p>
-                <p class="count-yoga count-schedule">0</p>
-             </div>
-             <div class="schedule">
-                <p class="name-of-schedule">Tổng số lịch Zumba</p>
-                <p class="count-zumba count-schedule">0</p>
-             </div>
+             
         </div>
         <div class="chart">
-
+            <canvas width="500" height="200" id="chart-schudule"></canvas>
         </div>
         <div class="filter">
             <form>
@@ -42,21 +31,18 @@
                     <div class="filter-input">
                         <label for="filter-class">Lớp học</label>
                         <select name="filter-class" id="filter-class">
-                            <option value="all">Tất cả</option>
-                            <option value="Gym">Gym</option>
-                            <option value="Yoga">Yoga</option>
-                            <option value="Zumba">Zumba</option>
-                    </select>
+                            
+                        </select>
+                    </div>
+                    <div class="filter-input">
+                        <label for="filter-email">Email</label>
+                        <input type="email" name="filter-email" id="filter-email" placeholder="Tìm theo email">
+                    </div>
+                    <div class="filter-input">
+                        <label for="filter-date">Ngày</label>
+                        <input type="date" name="filter-date" id="filter-date">
+                    </div>
                 </div>
-                <div class="filter-input">
-                    <label for="filter-email">Email</label>
-                    <input type="email" name="filter-email" id="filter-email" placeholder="Tìm theo email">
-                </div>
-                <div class="filter-input">
-                    <label for="filter-date">Ngày</label>
-                    <input type="date" name="filter-date" id="filter-date">
-                </div>
-            </div>
             </form>
 
             <table border="0" cellspacing="0" >
