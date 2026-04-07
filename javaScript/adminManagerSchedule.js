@@ -166,6 +166,7 @@ const dataAdmin=()=>{
 }
 
 dataAdmin()
+
 const renderDataSchedule=()=>{
     if(adminListSchedules.length===0){
         tbodyListSchedule.innerHTML=`<tr><td colspan="6" style="text-align: center;">Chưa có ai đặt lịch tập</td></tr>`
@@ -197,14 +198,18 @@ const renderDataSchedule=()=>{
                 <td>${nameUser}</td>
                 <td>${emailUser}</td>
                 <td>
-                    <button onclick="updateSchedule(${user.id})" class="edit-schedule" >Sửa</button>
-                    <button onclick="deleteSchedule(${user.id})" class="delete-schedule" >Xóa</button>
+                    <button onclick="updateSchedule('${user.id}')" class="edit-schedule" >Sửa</button>
+                    <button onclick="deleteSchedule('${user.id}')" class="delete-schedule" >Xóa</button>
                 </td>
             </tr>
         `
     })
 }
-renderDataSchedule()
+const loadDataAdminAndRender=()=>{
+    dataAdmin()
+    renderDataSchedule()
+}
+loadDataAdminAndRender()
 
 const filterSchedule=()=>{
     getDataSchedule()
@@ -239,10 +244,52 @@ filterClass.addEventListener("change",filterSchedule)
 filterEmail.addEventListener("keyup",filterSchedule)
 filterDate.addEventListener("change",filterSchedule)
 
+
+// chart
+let chartInstance = null
+const renderChart=()=>{
+    chartElement.innerHTML=""
+    getDataClass()
+    getDataSchedule()
+    let arrayClassAndCount=listClass.map((service)=>{
+        return {
+            name: service.name,
+            count: listSchedules.filter((schedule)=>{
+                return schedule.classId==service.id && schedule.status!=="cancel"
+            }).length
+        }
+    })
+
+    if (chartInstance) {
+        chartInstance.destroy()
+    }
+
+  chartInstance=new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: arrayClassAndCount.map(el=>el.name),
+      datasets: [{
+        label: 'Số lượng lịch học',
+        data: arrayClassAndCount.map((el)=>el.count),
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+            beginAtZero: true
+        }
+      }
+    }
+  });
+}
+renderChart()
+
+
 // U
 const findIndexById=(id)=>{
     let indexSearch=listSchedules.findIndex((schedule)=>{
-        return schedule.id==id
+        return schedule.id===id
     })
     return indexSearch
 }
@@ -288,8 +335,9 @@ btnConfirmUpdate.addEventListener("click",(e)=>{
         isValid=false
     }
     if(isValid==true){
-        let isExisted=ownSchedule.some((schudule)=>{
-            return schudule.date===rawDate && schudule.time===rawTime 
+        let currentUserId =listSchedules[indexUpdate].userId
+        let isExisted=listSchedules.some((schudule,index)=>{
+            return schudule.date===rawDate && schudule.time===rawTime  && schudule.userId ===currentUserId && index!==indexUpdate && schudule.status!=="cancel"
         })
         if(isExisted){
             validateDate.innerText="Bạn đã có lịch tập tại thời điểm này rồi "
@@ -303,7 +351,9 @@ btnConfirmUpdate.addEventListener("click",(e)=>{
         listSchedules[indexUpdate].time=inputUpdTime.value
         saveSchedule()
         closePopupUpdate()
-        renderDataSchedule()
+        loadDataAdminAndRender()
+        renderStatisticalClass()
+        renderChart()
         Swal.fire({
             title: "Oke rồi đấy!",
             icon: "success",
@@ -320,41 +370,13 @@ const deleteSchedule=(id)=>{
 btnConfirmDelete.addEventListener("click",()=>{
     listSchedules[indexDelete].status="cancel"
     saveSchedule()
-    renderDataSchedule()
+    loadDataAdminAndRender()
+    renderStatisticalClass()
     closeModalConfirmDelete()
+    renderChart()
     Swal.fire({
     title: "Oke rồi nhá",
     icon: "success",
     text: "Đã xóa lịch tập thành công"
     });  
 })
-
- getDataClass()
-    getDataSchedule()
-    let arrayClassAndCount=listClass.map((service)=>{
-        return {
-            name: service.name,
-            count: listSchedules.filter((schedule)=>{
-                return schedule.classId==service.id && schedule.status!=="cancel"
-            }).length
-        }
-    })
-
-  new Chart(ctx, {
-    type: 'bar',
-    data: {
-      labels: arrayClassAndCount.map(el=>el.name),
-      datasets: [{
-        label: 'Số lượng lịch học',
-        data: arrayClassAndCount.map((el)=>el.count),
-        borderWidth: 1
-      }]
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true
-        }
-      }
-    }
-  });

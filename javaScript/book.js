@@ -4,7 +4,6 @@ let listSchedules=[
     {id: `${Date.now()+2}`, userId:`Id2`, classId:3, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
     {id: `${Date.now()+3}`, userId:`Id1`, classId:1, date:`2026-04-01`, time:`7:00-9:00`, status:"pending", createdAt:"01/04/2026", updatedAt:"01/04/2026"},
 ]
-// localStorage.setItem("Schedules",JSON.stringify(listSchedules))
 
 let listClass=[
     {id: 1, name: "Gym", description:"Tập luyện với các thiết bị hiện đại", image:"../img/Image [w-full].png" },
@@ -49,6 +48,7 @@ const resetForm=()=>{
     validateTime.innerText=""
 }
 
+// popup
 const openForm=()=> {
     formAddSchedule.classList.remove("hidden")
     overlay.classList.remove("hidden")
@@ -97,6 +97,8 @@ overlay.addEventListener("click", () => {
     closeModalDelete()
 })
 
+
+// lấy và lưu dữ liệu
 const getDataSchedule=()=>{
     let dataSchedule=localStorage.getItem("Schedules")
     if(dataSchedule){
@@ -121,7 +123,26 @@ getDataClass()
 
 let ownSchedule
 
+// PHÂN TRANG 
+// hiện nút
+let currentPage=0
+let perPage=2
+const appearButtonPagination=()=>{
+    let totalSchedules=ownSchedule.length
+    let totalPage=Math.ceil(totalSchedules/perPage)
+    paginationElement.innerHTML=""
+    for(let i=0;i<totalPage;i++){
+        paginationElement.innerHTML+=`
+        <button onclick="handleRenderDataByPagination(${i})" class="btn-pag ${i==currentPage ? "btn-pag-active" : ""}">${i+1}</button>`
+    }
+}
 
+const handleRenderDataByPagination=(indexShedule)=>{
+    currentPage=indexShedule
+    render()
+}
+
+// R
 const render=()=>{
     getDataSchedule()
     if(currentUser==null){
@@ -132,7 +153,7 @@ const render=()=>{
         });
         return
     }
-    
+
     ownSchedule=listSchedules.filter((schedule)=>{
         return currentUser.id===schedule.userId && schedule.status!=="cancel"
     })
@@ -142,12 +163,20 @@ const render=()=>{
     icon: "error",
     title: "Oops...",
     text: "Danh sách lịch tập trống",   
-        });
+    });
         return
-}
+    }
+
+    let totalPage=Math.ceil(ownSchedule.length/perPage)
+    if(currentPage>=totalPage){
+        currentPage--
+    }
+    appearButtonPagination()
+
+    let pageData = ownSchedule.slice(currentPage * perPage, currentPage * perPage + perPage);
 
 scheduleElement.innerHTML=""
-ownSchedule.forEach((schedule)=>{
+pageData.forEach((schedule)=>{
     let nameClass
     listClass.forEach((service)=>{
         if(schedule.classId==service.id){
@@ -179,7 +208,6 @@ if(currentUser==null){
     spanLogin.style.display="inline-block"
 }else{
     spanLogin.style.display="none"
-    
 }
 
 const addInputNameClass=()=>{
@@ -192,9 +220,6 @@ const addInputNameClass=()=>{
     })
 }
 addInputNameClass()
-
-
-
 // check validate
 
 const checkValidateForm=(idEdit=null)=>{
@@ -339,5 +364,4 @@ confirmDelete.addEventListener("click",()=>{
         timer:3000
     });
 })
-
 
